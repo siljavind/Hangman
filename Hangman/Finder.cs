@@ -16,8 +16,6 @@ namespace Hangman
             int randomNumber = randomGenerator.Next(0, wordList.Count);
             string randomWord = wordList[randomNumber];
 
-            Console.WriteLine(randomWord);
-
             List<char> charList = new List<char>();
 
             charList.AddRange(randomWord);
@@ -31,7 +29,7 @@ namespace Hangman
 
             for (int i = 0; i < charList.Count; i++)
             {
-                underscoreList.Add('_');
+                underscoreList.Add('?');
                 Console.Write(underscoreList[i]);
             }
 
