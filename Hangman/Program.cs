@@ -9,8 +9,8 @@ namespace Hangman
         {
             Console.WriteLine("Waddup\n");
 
-            List<char> charList = new List<char>(Finder.Word());
-            List<char> underscoreList = new List<char>(Finder.Underscore(charList));
+            List<char> charList = new(Finder.Word());
+            List<char> underscoreList = new(Finder.Underscore(charList));
 
             int counter = 1;
 
