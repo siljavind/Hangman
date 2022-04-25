@@ -1,9 +1,9 @@
-﻿//using System.Drawing;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
+// using System.Drawing;
 
 namespace Hangman
 {
-    public class Program
+    public class Program // TODO everything
     {
         public static void Main(string[] args)
         {
@@ -23,7 +23,7 @@ namespace Hangman
                 bool doesContain = charList.Contains(userGuess);
 
                 Regex regexCheck = new Regex(@"[a-z]");
-                Match isValid = regexCheck.Match(userGuess.ToString()); //TODO Deal with case sensitivity 
+                Match isValid = regexCheck.Match(userGuess.ToString()); // TODO Deal with case sensitivity 
 
                 if (doesContain && isValid.Success)
                 {
