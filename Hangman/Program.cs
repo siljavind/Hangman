@@ -22,7 +22,7 @@ namespace Hangman
 
                 bool doesContain = charList.Contains(userGuess);
 
-                Regex regexCheck = new Regex(@"/[a-z]||[A-Z]/gmi");
+                Regex regexCheck = new Regex(@"/[a-z]||[A-Z]/gi");
                 Match isValid = regexCheck.Match(userGuess.ToString());
 
                 if (doesContain && isValid.Success)
