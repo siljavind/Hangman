@@ -9,8 +9,8 @@ namespace Hangman
         {
             Console.WriteLine("Waddup\n");
 
-            List<char> charList = new List<char>(Finder.Word());
-            List<char> underscoreList = new List<char>(Finder.Underscore(charList));
+            List<char> charList = new(Finder.Word());
+            List<char> underscoreList = new(Finder.Underscore(charList));
 
             int counter = 1;
 
@@ -22,7 +22,7 @@ namespace Hangman
 
                 bool doesContain = charList.Contains(userGuess);
 
-                Regex regexCheck = new Regex(@"/[a-z]||[A-Z]/gi");
+                Regex regexCheck = new(@"/[a-z]||[A-Z]/gi");
                 Match isValid = regexCheck.Match(userGuess.ToString());
 
                 if (doesContain && isValid.Success)

@@ -10,13 +10,13 @@ namespace Hangman
     {
         internal static List<char> Word()
         {
-            List<string> wordList = new List<string>(File.ReadAllLines(@"EnglishDictionary.txt"));
+            List<string> wordList = new(File.ReadAllLines(@"EnglishDictionary.txt"));
 
-            Random randomGenerator = new Random();
+            Random randomGenerator = new();
             int randomNumber = randomGenerator.Next(0, wordList.Count);
             string randomWord = wordList[randomNumber];
 
-            List<char> charList = new List<char>();
+            List<char> charList = new();
 
             charList.AddRange(randomWord);
 
@@ -25,7 +25,7 @@ namespace Hangman
 
         internal static List<char> Underscore(List<char> charList)
         {
-            List<char> underscoreList = new List<char>();
+            List<char> underscoreList = new();
 
             for (int i = 0; i < charList.Count; i++)
             {
