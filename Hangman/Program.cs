@@ -22,8 +22,8 @@ namespace Hangman
 
                 bool doesContain = charList.Contains(userGuess);
 
-                Regex regexCheck = new Regex(@"[a-z]");
-                Match isValid = regexCheck.Match(userGuess.ToString()); // TODO Deal with case sensitivity 
+                Regex regexCheck = new Regex(@"/[a-z]||[A-Z]/gmi");
+                Match isValid = regexCheck.Match(userGuess.ToString());
 
                 if (doesContain && isValid.Success)
                 {
