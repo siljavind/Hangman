@@ -1,39 +1,33 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Hangman;
 
-namespace Hangman
+internal class Finder
 {
-    internal class Finder
+    internal static List<char> Word()
     {
-        internal static List<char> Word()
+        List<string> wordList = new(File.ReadAllLines(@"EnglishDictionary.txt"));
+
+        Random randomGenerator = new();
+        int randomNumber = randomGenerator.Next(0, wordList.Count);
+        string randomWord = wordList[randomNumber];
+
+        List<char> charList = new();
+
+        charList.AddRange(randomWord);
+
+        return charList;
+    }
+
+    internal static List<char> Underscore(List<char> charList)
+    {
+        List<char> underscoreList = new();
+
+        for (int i = 0; i < charList.Count; i++)
         {
-            List<string> wordList = new(File.ReadAllLines(@"EnglishDictionary.txt"));
-
-            Random randomGenerator = new();
-            int randomNumber = randomGenerator.Next(0, wordList.Count);
-            string randomWord = wordList[randomNumber];
-
-            List<char> charList = new();
-
-            charList.AddRange(randomWord);
-
-            return charList;
+            underscoreList.Add('_');
+            Console.Write(underscoreList[i].ToString().PadRight(2));
         }
 
-        internal static List<char> Underscore(List<char> charList)
-        {
-            List<char> underscoreList = new();
-
-            for (int i = 0; i < charList.Count; i++)
-            {
-                underscoreList.Add('_');
-                Console.Write(underscoreList[i].ToString().PadRight(2));
-            }
-
-            return underscoreList;
-        }
+        return underscoreList;
     }
 }
+
