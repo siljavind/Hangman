@@ -1,14 +1,13 @@
 ﻿//using System.Drawing;
 using System.Text.RegularExpressions;
 
-
 namespace Hangman
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello motherfucker\n");
+            Console.WriteLine("Waddup\n");
 
             List<char> charList = new List<char>(Finder.Word());
             List<char> underscoreList = new List<char>(Finder.Underscore(charList));
