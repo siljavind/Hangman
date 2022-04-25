@@ -34,7 +34,7 @@ namespace Hangman
                             underscoreList[i] = charList[i];
                         }
 
-                        Console.Write(underscoreList[i].ToString().ToUpper());
+                        Console.Write(underscoreList[i].ToString().ToUpper().PadRight(2));
                     }
                 }
 
@@ -49,7 +49,7 @@ namespace Hangman
                     Console.WriteLine("Enter valid character\n");
                 }
 
-            } while (underscoreList.Contains('?') && counter <= 5);
+            } while (underscoreList.Contains('_') && counter <= 5);
 
             foreach (var i in charList)
             {

@@ -29,8 +29,8 @@ namespace Hangman
 
             for (int i = 0; i < charList.Count; i++)
             {
-                underscoreList.Add('?');
-                Console.Write(underscoreList[i]);
+                underscoreList.Add('_');
+                Console.Write(underscoreList[i].ToString().PadRight(2));
             }
 
             return underscoreList;
