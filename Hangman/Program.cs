@@ -1,9 +1,10 @@
-﻿using System.Text.RegularExpressions;
-using System.Drawing;
+﻿using System.Text.RegularExpressions; //Regex
+using System.Drawing; //Allows using Point for SetCursorPosition
 
 namespace Hangman
 {
-    public class Program // TODO Clean up and put into seperate classes
+    public class Program // TODO Clean up and put into separate classes
+                         // Implement visual element(s)
     {
         public static void Main(string[] args)
         {
@@ -19,7 +20,7 @@ namespace Hangman
             do //TODO start screen
             {
                 Methods.SetPosition(5, 25);
-                Console.WriteLine($"{lives} out of 5 lives used\n");
+                Console.WriteLine($"{lives} out of 5 lives left\n");
 
                 Methods.SetPosition(50 + (counter), 25);
                 counter += 2;
@@ -47,12 +48,14 @@ namespace Hangman
                 if (!charList.Contains(userGuess) && isValid.Success)
                 {
                     lives--;
+                    Methods.SetPosition(5, 25);
+                    Console.WriteLine($"{lives} out of 5 lives left\n"); //TODO Same code is used twice. Don't.
                 }
 
                 if (!isValid.Success)
                 {
                     Methods.SetPosition(5, 20);
-                    Console.WriteLine("Please enter a valid character\n");
+                    Console.WriteLine("Please enter a valid character (a-z)\n");
                 }
 
             } while (underscoreList.Contains('_') && lives != 0);
