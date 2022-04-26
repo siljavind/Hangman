@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions;
-// using System.Drawing;
+using System.Drawing;
 
 namespace Hangman
 {
@@ -7,26 +7,33 @@ namespace Hangman
     {
         public static void Main(string[] args)
         {
+            int lives = 5, counter = 0;
+
+
             Console.WriteLine("Waddup\n");
 
             List<char> charList = new(Finder.Word());
+            Methods.SetLocation(5, 22);
             List<char> underscoreList = new(Finder.Underscore(charList));
 
-            int counter = 1;
 
-            do
+            do //TODO start screen
             {
-                Methods.NewLine();
-                char userGuess = Console.ReadKey().KeyChar;
-                Methods.NewLine();
+                Methods.SetLocation(5, 25);
+                Console.WriteLine($"{lives} out of 5 lives\n");
 
-                bool doesContain = charList.Contains(userGuess);
+                Methods.SetLocation(50 + (counter), 25);
+                counter = counter + 2;
 
-                Regex regexCheck = new(@"/[a-z]||[A-Z]/gi");
-                Match isValid = regexCheck.Match(userGuess.ToString());
+                char userGuess = Char.ToUpper(Console.ReadKey().KeyChar);
 
-                if (doesContain && isValid.Success)
+                Regex regexAZ = new(@"[A-Z]");
+                Match isValid = regexAZ.Match(userGuess.ToString());
+
+                if (charList.Contains(userGuess) && isValid.Success)
                 {
+                    Methods.SetLocation(5, 22);
+
                     for (int i = 0; i < charList.Count; i++)
                     {
                         if (charList[i].Equals(userGuess))
@@ -34,29 +41,30 @@ namespace Hangman
                             underscoreList[i] = charList[i];
                         }
 
-                        Console.Write(underscoreList[i].ToString().ToUpper().PadRight(2));
+                        Console.Write(underscoreList[i].ToString().PadRight(2));
                     }
                 }
 
-                if (!doesContain && isValid.Success)
+                if (!charList.Contains(userGuess) && isValid.Success)
                 {
-                    Console.WriteLine("Used " + counter + " out of 5 lives");
-                    counter++;
+                    lives--;
                 }
 
                 if (!isValid.Success)
                 {
-                    Console.WriteLine("Enter valid character\n");
+                    Methods.SetLocation(5, 20);
+                    Console.WriteLine("Please enter a valid character\n");
                 }
 
-            } while (underscoreList.Contains('_') && counter <= 5);
+            } while (underscoreList.Contains('_') && lives != 0);
 
-            foreach (var i in charList)
+            for (int i = 0; i < charList.Count; i++)
             {
-                Console.Write(i.ToString().ToUpper());
+                Methods.SetLocation(5, 20);
+                Console.Write(charList[i].ToString().PadRight(2));
             }
 
-            Methods.NewLine();
+            Console.ReadKey();
 
             //Point location = new Point(10, 10);
             //Size imageSize = new Size(20, 10);
@@ -75,9 +83,15 @@ namespace Hangman
 
     public class Methods
     {
-        public static void NewLine()
+        internal static void NewLine()
         {
             Console.WriteLine(Environment.NewLine);
+        }
+
+        internal static void SetLocation(int x, int y)
+        {
+            Point local = new(x, y);
+            Console.SetCursorPosition(local.X, local.Y);
         }
     }
 }

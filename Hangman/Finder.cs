@@ -4,15 +4,19 @@ internal class Finder
 {
     internal static List<char> Word()
     {
+        int randomNumber;
+        string randomWord;
+
         List<string> wordList = new(File.ReadAllLines(@"EnglishDictionary.txt"));
 
         Random randomGenerator = new();
-        int randomNumber = randomGenerator.Next(0, wordList.Count);
-        string randomWord = wordList[randomNumber];
+        randomNumber = randomGenerator.Next(0, wordList.Count);
+        randomWord = wordList[randomNumber];
 
         List<char> charList = new();
-
         charList.AddRange(randomWord);
+
+        Console.Write(randomWord + "\n");
 
         return charList;
     }
