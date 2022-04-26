@@ -3,27 +3,26 @@ using System.Drawing;
 
 namespace Hangman
 {
-    public class Program // TODO Clean up and put into seperate methods
+    public class Program // TODO Clean up and put into seperate classes
     {
         public static void Main(string[] args)
         {
             int lives = 5, counter = 0;
 
-
             Console.WriteLine("Waddup\n");
 
-            List<char> charList = new(Finder.Word());
-            Methods.SetLocation(5, 22);
-            List<char> underscoreList = new(Finder.Underscore(charList));
+            Methods.SetPosition(5, 20);
 
+            List<char> charList = new(Finder.Word());
+            List<char> underscoreList = new(Finder.Underscore(charList));
 
             do //TODO start screen
             {
-                Methods.SetLocation(5, 25);
-                Console.WriteLine($"{lives} out of 5 lives\n");
+                Methods.SetPosition(5, 25);
+                Console.WriteLine($"{lives} out of 5 lives used\n");
 
-                Methods.SetLocation(50 + (counter), 25);
-                counter = counter + 2;
+                Methods.SetPosition(50 + (counter), 25);
+                counter += 2;
 
                 char userGuess = Char.ToUpper(Console.ReadKey().KeyChar);
 
@@ -32,7 +31,7 @@ namespace Hangman
 
                 if (charList.Contains(userGuess) && isValid.Success)
                 {
-                    Methods.SetLocation(5, 22);
+                    Methods.SetPosition(5, 20);
 
                     for (int i = 0; i < charList.Count; i++)
                     {
@@ -52,19 +51,18 @@ namespace Hangman
 
                 if (!isValid.Success)
                 {
-                    Methods.SetLocation(5, 20);
+                    Methods.SetPosition(5, 20);
                     Console.WriteLine("Please enter a valid character\n");
                 }
 
             } while (underscoreList.Contains('_') && lives != 0);
 
+            Methods.SetPosition(5, 20);
+
             for (int i = 0; i < charList.Count; i++)
             {
-                Methods.SetLocation(5, 20);
                 Console.Write(charList[i].ToString().PadRight(2));
             }
-
-            Console.ReadKey();
 
             //Point location = new Point(10, 10);
             //Size imageSize = new Size(20, 10);
@@ -81,14 +79,14 @@ namespace Hangman
         }
     }
 
-    public class Methods
+    public class Methods //Methods that are not necessary, but makes the code more "clean(/prettier)"
     {
-        internal static void NewLine()
+        internal static void NewLine() //Adds a new line (outside of already established CW).
         {
             Console.WriteLine(Environment.NewLine);
         }
 
-        internal static void SetLocation(int x, int y)
+        internal static void SetPosition(int x, int y) // "Cleaner" way of setting position.
         {
             Point local = new(x, y);
             Console.SetCursorPosition(local.X, local.Y);

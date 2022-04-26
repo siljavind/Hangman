@@ -16,8 +16,6 @@ internal class Finder
         List<char> charList = new();
         charList.AddRange(randomWord);
 
-        Console.Write(randomWord + "\n");
-
         return charList;
     }
 
