@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace Hangman
 {
-    public class Program // TODO everything
+    public class Program // TODO Clean up and put into seperate methods
     {
         public static void Main(string[] args)
         {
