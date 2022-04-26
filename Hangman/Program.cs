@@ -1,5 +1,5 @@
 ﻿using System.Text.RegularExpressions; //Regex
-using System.Drawing; //Allows using Point for SetCursorPosition
+using System.Drawing; //Allows the use of Point for SetCursorPosition
 
 namespace Hangman
 {
@@ -8,14 +8,15 @@ namespace Hangman
     {
         public static void Main(string[] args)
         {
+            char userGuess;
             int lives = 5, counter = 0;
 
-            Console.WriteLine("Waddup\n");
+            Console.WriteLine("Waddup\n"); //Welcome to the Wild West
 
             Methods.SetPosition(5, 20);
 
-            List<char> charList = new(Finder.Word());
-            List<char> underscoreList = new(Finder.Underscore(charList));
+            List<char> charList = new(Finder.Word()); //Puts random word from textfile "EnglishDictionary.txt" in a char list
+            List<char> underscoreList = new(Finder.Underscore(charList)); //Creates new list where each char is converted to underscores and printed
 
             do //TODO start screen
             {
@@ -25,7 +26,7 @@ namespace Hangman
                 Methods.SetPosition(50 + (counter), 25);
                 counter += 2;
 
-                char userGuess = Char.ToUpper(Console.ReadKey().KeyChar);
+                userGuess = Char.ToUpper(Console.ReadKey().KeyChar);
 
                 Regex regexAZ = new(@"[A-Z]");
                 Match isValid = regexAZ.Match(userGuess.ToString());
