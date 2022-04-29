@@ -12,10 +12,10 @@ public class Program // TODO Clean up and put into separate classes
 
         Console.WriteLine("o shit waddup");
 
-        TinyTools.SetPosition(positionWord);
+        Tools.SetPosition(positionWord);
 
-        List<char> charList = new(Finder.Word()); //Puts random word from textfile "EnglishDictionary.txt" into char list
-        List<char> underscoreList = new(Finder.Underscore(charList)); //Creates new list where each char is converted to underscores
+        List<char> charList = new(Finder.Word()); //Random word from textfile "EnglishDictionary.txt" into char list
+        List<char> underscoreList = new(Finder.Underscore(charList)); //New list where charList is converted to underscores
         List<char> guessList = new();
 
         do
@@ -29,7 +29,7 @@ public class Program // TODO Clean up and put into separate classes
             if (!guessList.Contains(userGuess))
             {
                 guessList.Add(userGuess);
-                Console.SetCursorPosition(50 + (counter), 25); //Placement of already used char      
+                Console.SetCursorPosition(50 + (counter), 25); //Placement of used guesses
                 Console.WriteLine(userGuess);
                 counter += 2;
             }
@@ -39,7 +39,7 @@ public class Program // TODO Clean up and put into separate classes
 
             if (charList.Contains(userGuess) && isValid.Success)
             {
-                TinyTools.SetPosition(positionWord);
+                Tools.SetPosition(positionWord);
 
                 for (int i = 0; i < charList.Count; i++)
                 {
@@ -55,19 +55,19 @@ public class Program // TODO Clean up and put into separate classes
             if (!charList.Contains(userGuess) && isValid.Success)
             {
                 lives--;
-                TinyTools.SetPosition(positionLives);
+                Tools.SetPosition(positionLives);
                 Console.WriteLine($"{lives} out of 5 lives left");
             }
 
             if (!isValid.Success)
             {
-                TinyTools.SetPosition(positionError);
+                Tools.SetPosition(positionError);
                 Console.WriteLine("Please enter a valid character (A-Z)");
             }
 
         } while (underscoreList.Contains('_') && lives != 0);
 
-        TinyTools.SetPosition(positionWord);
+        Tools.SetPosition(positionWord);
 
         for (int i = 0; i < charList.Count; i++)
         {
