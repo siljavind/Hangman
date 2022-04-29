@@ -72,6 +72,7 @@ public class Program // TODO Clean up and put into separate classes
         for (int i = 0; i < charList.Count; i++)
         {
             Console.Write(charList[i].ToString().PadRight(2));
+            Thread.Sleep(10);
         }
 
         Console.ReadKey(true);
