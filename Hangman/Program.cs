@@ -8,22 +8,18 @@ public class Program // TODO Clean up and put into separate classes
     {
         char userGuess;
         int lives = 5, counter = 0;
-        string positionWord = "5,20", positionLives = "5,25";
+        string positionWord = "5,20", positionError = "5, 22", positionLives = "5,25";
 
-        Console.WriteLine("Waddup\n");
+        Console.WriteLine("o shit waddup");
 
         TinyTools.SetPosition(positionWord);
 
         List<char> charList = new(Finder.Word()); //Puts random word from textfile "EnglishDictionary.txt" into char list
         List<char> underscoreList = new(Finder.Underscore(charList)); //Creates new list where each char is converted to underscores
-
+        List<char> guessList = new();
 
         do
         {
-            TinyTools.SetPosition(positionLives);
-            Console.WriteLine($"{lives} out of 5 lives left\n");
-
-            List<char> guessList = new();
             do
             {
                 userGuess = Char.ToUpper(Console.ReadKey(true).KeyChar);
@@ -60,13 +56,13 @@ public class Program // TODO Clean up and put into separate classes
             {
                 lives--;
                 TinyTools.SetPosition(positionLives);
-                Console.WriteLine($"{lives} out of 5 lives left\n"); //TODO Same code is used twice. Maybe don't.
+                Console.WriteLine($"{lives} out of 5 lives left");
             }
 
             if (!isValid.Success)
             {
-                TinyTools.SetPosition(positionWord);
-                Console.WriteLine("Please enter a valid character (a-z)\n");
+                TinyTools.SetPosition(positionError);
+                Console.WriteLine("Please enter a valid character (a-z)");
             }
 
         } while (underscoreList.Contains('_') && lives != 0);
@@ -78,6 +74,7 @@ public class Program // TODO Clean up and put into separate classes
             Console.Write(charList[i].ToString().PadRight(2));
         }
 
+        Console.ReadKey(true);
     }
 }
 
