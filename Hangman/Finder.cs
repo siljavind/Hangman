@@ -10,7 +10,7 @@
             List<string> wordList = new(File.ReadAllLines(@"EnglishDictionary.txt"));
 
             Random randomGenerator = new();
-            randomNumber = randomGenerator.Next(0, wordList.Count);
+            randomNumber = randomGenerator.Next(0, wordList.Count); //0 not necessary
             randomWord = wordList[randomNumber];
 
             List<char> charList = new();
@@ -26,7 +26,7 @@
             for (int i = 0; i < charList.Count; i++)
             {
                 underscoreList.Add('_');
-                Console.Write(underscoreList[i].ToString().PadRight(2));
+                Console.Write($"{underscoreList[i]} "); //ToString().PadRight(2);
             }
 
             return underscoreList;

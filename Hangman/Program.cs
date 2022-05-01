@@ -6,17 +6,24 @@ class Program // TODO Clean up and put into separate classes
 {
     public static void Main()
     {
+        Console.CursorVisible = false; // Hides blinking cursor position
+        List<char> charList = new(Finder.Word()); //Random word from textfile "EnglishDictionary.txt" into char list
+        List<char> guessList = new();
+
+        string welcome = "Welcome to pacific Hangman";
         char userGuess;
         int lives = 5;
-        int[] positionWord = { 5, 20 }, positionError = { 5, 22 }, positionLives = { 5, 25 }, positionGuess = { 50, 25 };
+        int[] positionWord = { Tools.ToMiddle(charList.Count), 15 },
+              positionWelcome = { Tools.ToMiddle(welcome.Length), 2 },
+              positionError = { 5, 22 },
+              positionLives = { 5, 25 },
+              positionGuess = { 50, 25 };
 
-        Console.WriteLine("o shit waddup");
+        Tools.SetPosition(positionWelcome);
+        Console.WriteLine(welcome);
 
         Tools.SetPosition(positionWord);
-
-        List<char> charList = new(Finder.Word()); //Random word from textfile "EnglishDictionary.txt" into char list
         List<char> underscoreList = new(Finder.Underscore(charList)); //New list where charList is converted to underscores
-        List<char> guessList = new();
 
         do
         {
@@ -24,7 +31,7 @@ class Program // TODO Clean up and put into separate classes
             {
                 userGuess = Char.ToUpper(Console.ReadKey(true).KeyChar);
                 Tools.SetPosition(positionError);
-                Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
+                Console.Write(new string(' ', Console.WindowWidth)); // TODO Change position
 
             } while (guessList.Contains(userGuess));
 
@@ -41,7 +48,7 @@ class Program // TODO Clean up and put into separate classes
                 Console.WriteLine(userGuess);
                 positionGuess[0] += 2;
 
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ResetColor();
             }
 
             Regex regexAZ = new(@"[A-Z]");
@@ -58,18 +65,18 @@ class Program // TODO Clean up and put into separate classes
                         underscoreList[i] = charList[i];
                     }
 
-                    Console.Write(underscoreList[i].ToString().PadRight(2));
+                    Console.Write($"{underscoreList[i]} ");
                 }
             }
 
-            if (!charList.Contains(userGuess) && isValid.Success)
+            else if (!charList.Contains(userGuess) && isValid.Success)
             {
                 lives--;
                 Tools.SetPosition(positionLives);
                 Console.WriteLine($"{lives} out of 5 lives left");
             }
 
-            if (!isValid.Success)
+            else if (!isValid.Success)
             {
                 Tools.SetPosition(positionError);
                 Console.WriteLine("Please enter a valid character (A-Z)");
@@ -77,12 +84,15 @@ class Program // TODO Clean up and put into separate classes
 
         } while (underscoreList.Contains('_') && lives != 0);
 
+        bool check = lives != 0; // Checks win conditions to set background color
+        Tools.BackgroundColor(check);
+
         Tools.SetPosition(positionWord);
 
         for (int i = 0; i < charList.Count; i++)
         {
-            Console.Write(charList[i].ToString().PadRight(2));
-            Thread.Sleep(10);
+            Console.Write($"{charList[i]} ");
+            Thread.Sleep(50);
         }
 
         Console.ReadKey(true);
