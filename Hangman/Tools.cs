@@ -10,7 +10,7 @@ namespace Hangman
             Console.SetCursorPosition(points.X, points.Y);
         }
 
-        internal static int ToMiddle(int wordLength) // Almost to middle. Honest to God, it's too late for this
+        internal static int ToMiddle(int wordLength) // Almost to middle. Honest to God, it's too late for this 
         {
             int position = (Console.WindowWidth / 2) - (wordLength / 2);
             return position;
