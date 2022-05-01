@@ -4,11 +4,11 @@ using Hangman;
 public class Program // TODO Clean up and put into separate classes
                      // TODO Implement visual element(s)
 {
-    public static void Main(string[] args)
+    public static void Main()
     {
         char userGuess;
-        int lives = 5, counter = 0;
-        string positionWord = "5,20", positionError = "5, 22", positionLives = "5,25";
+        int lives = 5;
+        int[] positionWord = { 5, 20 }, positionError = { 5, 22 }, positionLives = { 5, 25 }, positionGuess = { 50, 25 };
 
         Console.WriteLine("o shit waddup");
 
@@ -29,9 +29,9 @@ public class Program // TODO Clean up and put into separate classes
             if (!guessList.Contains(userGuess))
             {
                 guessList.Add(userGuess);
-                Console.SetCursorPosition(50 + (counter), 25); //Placement of used guesses
+                Tools.SetPosition(positionGuess);
                 Console.WriteLine(userGuess);
-                counter += 2;
+                positionGuess[0] += 2;
             }
 
             Regex regexAZ = new(@"[A-Z]");

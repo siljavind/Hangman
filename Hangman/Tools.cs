@@ -4,10 +4,9 @@ namespace Hangman
 {
     internal class Tools
     {
-        internal static void SetPosition(string x) // "Cleaner" way of setting same position. Mostly just to try it out
+        internal static void SetPosition(int[] position) // "Cleaner" way of setting same position. Mostly just to try it out
         {
-            int[] intArray = Array.ConvertAll(x.Split(','), int.Parse);
-            Point points = new(intArray[0], intArray[1]);
+            Point points = new(position[0], position[1]);
             Console.SetCursorPosition(points.X, points.Y);
         }
 
