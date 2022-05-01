@@ -31,7 +31,7 @@ class Program // TODO Clean up and put into separate classes
             {
                 userGuess = Char.ToUpper(Console.ReadKey(true).KeyChar);
                 Tools.SetPosition(positionError);
-                Console.Write(new string(' ', Console.WindowWidth)); // TODO Change position
+                Console.Write(new string(' ', Console.WindowWidth)); // TODO Change position?
 
             } while (guessList.Contains(userGuess));
 
