@@ -2,7 +2,7 @@
 {
     internal class Finder
     {
-        internal static List<char> Word()
+        internal static List<char> Word() //Random word from textfile "EnglishDictionary.txt" into char list
         {
             int randomNumber;
             string randomWord;
@@ -19,7 +19,7 @@
             return charList;
         }
 
-        internal static List<char> Underscore(List<char> charList)
+        internal static List<char> Underscore(List<char> charList) //New list where charList is converted to underscores
         {
             List<char> underscoreList = new();
 

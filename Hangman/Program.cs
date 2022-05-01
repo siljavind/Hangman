@@ -1,8 +1,8 @@
 ﻿using System.Text.RegularExpressions;
 using Hangman;
 
-public class Program // TODO Clean up and put into separate classes
-                     // TODO Implement visual element(s)
+class Program // TODO Clean up and put into separate classes
+              // TODO Implement visual element(s)
 {
     public static void Main()
     {
@@ -23,15 +23,25 @@ public class Program // TODO Clean up and put into separate classes
             do
             {
                 userGuess = Char.ToUpper(Console.ReadKey(true).KeyChar);
+                Tools.SetPosition(positionError);
+                Console.Write("\r" + new string(' ', Console.WindowWidth) + "\r");
 
             } while (guessList.Contains(userGuess));
 
             if (!guessList.Contains(userGuess))
             {
+                if (charList.Contains(userGuess))
+                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+
+                else if (!charList.Contains(userGuess))
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+
                 guessList.Add(userGuess);
                 Tools.SetPosition(positionGuess);
                 Console.WriteLine(userGuess);
                 positionGuess[0] += 2;
+
+                Console.ForegroundColor = ConsoleColor.White;
             }
 
             Regex regexAZ = new(@"[A-Z]");
