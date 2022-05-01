@@ -10,14 +10,15 @@ class Program // TODO Clean up and put into separate classes
         List<char> charList = new(Finder.Word()); //Random word from textfile "EnglishDictionary.txt" into char list
         List<char> guessList = new();
 
-        string welcome = "Welcome to pacific Hangman";
+        string welcome = "Welcome to pacifist Hangman";
+        string errorMessage = "Please enter a valid character (A-Z)";
         char userGuess;
         int lives = 5;
         int[] positionWord = { Tools.ToMiddle(charList.Count), 15 },
               positionWelcome = { Tools.ToMiddle(welcome.Length), 2 },
-              positionError = { 5, 22 },
-              positionLives = { 5, 25 },
-              positionGuess = { 50, 25 };
+              positionLives = { Console.WindowWidth - 31, Console.WindowHeight - 3 },
+              positionError = { 10, Console.WindowHeight - 2 },
+              positionGuess = { 10, Console.WindowHeight - 3 };
 
         Tools.SetPosition(positionWelcome);
         Console.WriteLine(welcome);
@@ -79,7 +80,7 @@ class Program // TODO Clean up and put into separate classes
             else if (!isValid.Success)
             {
                 Tools.SetPosition(positionError);
-                Console.WriteLine("Please enter a valid character (A-Z)");
+                Console.WriteLine(errorMessage);
             }
 
         } while (underscoreList.Contains('_') && lives != 0);
