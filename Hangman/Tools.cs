@@ -16,13 +16,16 @@ namespace Hangman
             return position;
         }
 
-        internal static void BackgroundColor(bool win) // Background color on win/lose screen
-                                                       // Could have used Console.BackgroundColor, then Console.Clear();
+        internal static void BackgroundColor(bool win) // Two different ways of setting background color on win/lose screen
         {
             Console.SetCursorPosition(0, 0);
             if (win)
+            {
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
-            else
+                Console.Clear();
+            }
+
+            else if (!win)
                 Console.BackgroundColor = ConsoleColor.DarkRed;
 
             for (int i = 0; i < Console.WindowHeight; i++)
