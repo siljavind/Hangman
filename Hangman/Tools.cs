@@ -10,9 +10,9 @@ namespace Hangman
             Console.SetCursorPosition(points.X, points.Y);
         }
 
-        internal static int ToMiddle(int wordLength) // Almost to middle. Uneven numbers? Honest to God, it's too late for this 
+        internal static int ToMiddle(int wordLength) // Almost to middle. Uneven numbers? Honest to God, I don't get it. Ask Henrik.
         {
-            int position = (Console.WindowWidth / 2) - (wordLength / 2);
+            int position = (Console.WindowWidth / 2) - (wordLength /* ?? / 2 ?? */);
             return position;
         }
 
