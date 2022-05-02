@@ -36,15 +36,15 @@ class Program // TODO Clean up and put into separate classes
 
             } while (guessList.Contains(userGuess));
 
-            if (!guessList.Contains(userGuess))
+            if (!guessList.Contains(userGuess)) // Handles unused guesess
             {
                 if (charList.Contains(userGuess))
-                    Console.ForegroundColor = ConsoleColor.DarkGreen;
+                    Console.ForegroundColor = ConsoleColor.DarkGreen; //Sets textcolor based on correctness
 
                 else if (!charList.Contains(userGuess))
                     Console.ForegroundColor = ConsoleColor.DarkRed;
 
-                guessList.Add(userGuess);
+                guessList.Add(userGuess); // Adds guess to list, sets cursorposition, prints and adds to new position
                 Tools.SetPosition(positionGuess);
                 Console.WriteLine(userGuess);
                 positionGuess[0] += 2;
@@ -55,7 +55,7 @@ class Program // TODO Clean up and put into separate classes
             Regex regexAZ = new(@"[A-Z]");
             Match isValid = regexAZ.Match(userGuess.ToString());
 
-            if (charList.Contains(userGuess) && isValid.Success)
+            if (charList.Contains(userGuess) && isValid.Success) // Guess is valid and correct
             {
                 Tools.SetPosition(positionWord);
 
@@ -70,14 +70,14 @@ class Program // TODO Clean up and put into separate classes
                 }
             }
 
-            else if (!charList.Contains(userGuess) && isValid.Success)
+            else if (!charList.Contains(userGuess) && isValid.Success) // Guess is valid, but incorrect
             {
                 lives--;
                 Tools.SetPosition(positionLives);
                 Console.WriteLine($"{lives} out of 5 lives left");
             }
 
-            else if (!isValid.Success)
+            else if (!isValid.Success) // Guess is invalid (not A-Z)
             {
                 Tools.SetPosition(positionError);
                 Console.WriteLine(errorMessage);
@@ -90,7 +90,7 @@ class Program // TODO Clean up and put into separate classes
 
         Tools.SetPosition(positionWord);
 
-        for (int i = 0; i < charList.Count; i++)
+        for (int i = 0; i < charList.Count; i++) // Prints correct word
         {
             Console.Write($"{charList[i]} ");
             Thread.Sleep(50);
