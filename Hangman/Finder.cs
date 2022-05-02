@@ -10,7 +10,7 @@
             List<string> wordList = new(File.ReadAllLines(@"EnglishDictionary.txt"));
 
             Random randomGenerator = new();
-            randomNumber = randomGenerator.Next(0, wordList.Count); //0 not necessary
+            randomNumber = randomGenerator.Next(wordList.Count);
             randomWord = wordList[randomNumber];
 
             List<char> charList = new();
