@@ -85,7 +85,7 @@ class Program // TODO Clean up and put into separate classes
 
         } while (underscoreList.Contains('_') && lives != 0);
 
-        bool check = lives != 0; // Checks win conditions to set background color
+        bool check = lives != 0; // Checks win/lose condition to set background color
         Tools.BackgroundColor(check);
 
         Tools.SetPosition(positionWord);
