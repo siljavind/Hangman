@@ -14,7 +14,7 @@ class Program // TODO Clean up and put into separate classes - another day. Prob
         char userGuess;
         int lives = 5;
 
-        int[] positionWord = { Tools.ToMiddle(charList.Count), 15 },
+        int[] positionWord = { Tools.ToMiddle(charList.Count * 2 - 1), 15 }, // (charList.Count * 2 - 1) to account for whitespaces later
               positionWelcome = { Tools.ToMiddle(welcome.Length), 2 },
               positionLives = { Console.WindowWidth - 31, Console.WindowHeight - 3 },
               positionError = { 10, Console.WindowHeight - 2 },

@@ -12,7 +12,7 @@ namespace Hangman
 
         internal static int ToMiddle(int wordLength) // TODO Almost to middle. Uneven numbers? Honest to God, wat? Ask Henrik.
         {
-            int position = (Console.WindowWidth / 2) - (wordLength /* ?? / 2 ?? */);
+            int position = (Console.WindowWidth / 2) - (wordLength / 2);
             return position;
         }
 
