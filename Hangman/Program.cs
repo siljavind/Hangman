@@ -2,7 +2,7 @@
 using Hangman;
 
 class Program // TODO Clean up and put into separate classes
-              // TODO Implement visual element(s)
+              // TODO Implement visual element(s)?
 {
     public static void Main()
     {
@@ -30,7 +30,7 @@ class Program // TODO Clean up and put into separate classes
         {
             do
             {
-                userGuess = Char.ToUpper(Console.ReadKey(true).KeyChar);
+                userGuess = char.ToUpper(Console.ReadKey(true).KeyChar);
                 Tools.SetPosition(positionError);
                 Console.Write(new string(' ', Console.WindowWidth)); // TODO Change position?
 
