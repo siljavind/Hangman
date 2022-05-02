@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Hangman;
 
-class Program // TODO Clean up and put into separate classes
+class Program // TODO Clean up and put into separate classes - another day. There was problems.
               // TODO Implement visual element(s)?
 {
     public static void Main()

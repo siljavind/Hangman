@@ -10,7 +10,7 @@ namespace Hangman
             Console.SetCursorPosition(points.X, points.Y);
         }
 
-        internal static int ToMiddle(int wordLength) // Almost to middle. Uneven numbers? Honest to God, I don't get it. Ask Henrik.
+        internal static int ToMiddle(int wordLength) // TODO Almost to middle. Uneven numbers? Honest to God, wat? Ask Henrik.
         {
             int position = (Console.WindowWidth / 2) - (wordLength /* ?? / 2 ?? */);
             return position;
@@ -18,20 +18,24 @@ namespace Hangman
 
         internal static void BackgroundColor(bool win) // Two different ways of setting background color on win/lose screen
         {
-            Console.SetCursorPosition(0, 0);
-            if (win)
+
+            if (win) // "Classic"
             {
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
                 Console.Clear();
             }
 
-            else if (!win)
+            else if (!win) // Another way
+            {
+                Console.SetCursorPosition(0, 0);
                 Console.BackgroundColor = ConsoleColor.DarkRed;
 
-            for (int i = 0; i < Console.WindowHeight; i++)
-            {
-                Console.Write(new string(' ', Console.WindowWidth));
+                for (int i = 0; i < Console.WindowHeight; i++) // Prints color as wide and tall as screen
+                {
+                    Console.Write(new string(' ', Console.WindowWidth));
+                }
             }
+
         }
 
         //internal static void NewLine() // "Cleaner" way of adding a new line (outside of CW).
