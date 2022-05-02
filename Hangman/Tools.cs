@@ -34,7 +34,7 @@ namespace Hangman
             }
         }
 
-        //internal static void NewLine() //Adds a new line (outside of already established CW).
+        //internal static void NewLine() // "Cleaner" way of adding a new line (outside of CW).
         //{
         //    Console.WriteLine(Environment.NewLine);
         //}
