@@ -7,7 +7,7 @@ class Program // TODO Clean up and put into separate classes
     public static void Main()
     {
         Console.CursorVisible = false; // Hides blinking cursor position
-        List<char> charList = new(Finder.Word()); //Random word from textfile "EnglishDictionary.txt" into char list
+        List<char> charList = new(Methods.Word()); //Random word from textfile "EnglishDictionary.txt" into char list
         List<char> guessList = new();
 
         string welcome = "Welcome to pacifist Hangman";
@@ -24,7 +24,7 @@ class Program // TODO Clean up and put into separate classes
         Console.WriteLine(welcome);
 
         Tools.SetPosition(positionWord);
-        List<char> underscoreList = new(Finder.Underscore(charList)); //New list where charList is converted to underscores
+        List<char> underscoreList = new(Methods.Underscore(charList)); //New list where charList is converted to underscores
 
         do
         {

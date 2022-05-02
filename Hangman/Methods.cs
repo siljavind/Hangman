@@ -1,6 +1,6 @@
 ﻿namespace Hangman
 {
-    internal class Finder
+    internal class Methods
     {
         internal static List<char> Word() //Random word from textfile "EnglishDictionary.txt" into char list
         {
