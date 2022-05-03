@@ -9,10 +9,13 @@ class Program // TODO Clean up and put into separate classes - another day. Prob
         List<char> charList = new(Finder.FindWord()); //Random word from textfile "EnglishDictionary.txt" into char list
         List<char> guessList = new();
 
+
+
         string welcome = "Welcome to pacifist Hangman";
         string errorMessage = "Please enter a valid character (A-Z)";
         char userGuess;
         int lives = 5;
+        Tools tools = new Tools(charList);
 
         int[] positionWord = { Tools.ToMiddle(charList.Count * 2 - 1), 15 }, // (charList.Count * 2 - 1) to account for whitespaces later
               positionWelcome = { Tools.ToMiddle(welcome.Length), 2 },
@@ -32,8 +35,6 @@ class Program // TODO Clean up and put into separate classes - another day. Prob
             do
             {
                 userGuess = char.ToUpper(Console.ReadKey(true).KeyChar);
-                Tools.SetPosition(positionError);
-                Console.Write(new string(' ', Console.WindowWidth)); // TODO Change position?
 
             } while (guessList.Contains(userGuess));
 
@@ -78,11 +79,9 @@ class Program // TODO Clean up and put into separate classes - another day. Prob
                 Console.WriteLine($"{lives} out of 5 lives left");
             }
 
-            else if (!isValid.Success) // Guess is invalid (not A-Z)
-            {
-                Tools.SetPosition(positionError);
-                Console.WriteLine(errorMessage);
-            }
+            else if (!isValid.Success) // Guess is invalid (not A-Z)            
+                Tools.Error();
+
 
         } while (underscoreList.Contains('_') && lives != 0);
 
@@ -90,12 +89,7 @@ class Program // TODO Clean up and put into separate classes - another day. Prob
         Tools.BackgroundColor(check);
 
         Tools.SetPosition(positionWord);
-
-        for (int i = 0; i < charList.Count; i++) // Prints correct word
-        {
-            Console.Write($"{charList[i]} ");
-            Thread.Sleep(50);
-        }
+        Tools.Print();
 
         Console.ReadKey(true);
     }
