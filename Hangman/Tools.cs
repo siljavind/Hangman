@@ -4,38 +4,31 @@ namespace Hangman
 {
     internal class Tools
     {
-        internal static void SetPosition(int[] position) // "Cleaner" way of setting same position. Mostly just to try it out
+        internal static void SetPosition(int[] position) // "Cleaner" way of setting same position. Mostly just to try Drawing.Points out
         {
-            Point points = new(position[0], position[1]);
-            Console.SetCursorPosition(points.X, points.Y);
+            //Point points = new(position[0], position[1]);
+            Console.SetCursorPosition(position[0], position[1]);
         }
 
-        internal static int ToMiddle(int wordLength) // TODO Almost to middle. Uneven numbers? Honest to God, wat? Ask Henrik.
+        internal static int ToMiddle(int wordLength)
         {
             int position = (Console.WindowWidth / 2) - (wordLength / 2);
             return position;
         }
 
-        internal static void BackgroundColor(bool win) // Two different ways of setting background color on win/lose screen
+        internal static void BackgroundColor(bool win) // Sets background color on win/lose screen
         {
+            Console.SetCursorPosition(0, 0);
 
-            if (win) // "Classic"
-            {
+            if (win)
                 Console.BackgroundColor = ConsoleColor.DarkGreen;
-                Console.Clear();
-            }
-
-            else if (!win) // Another way
-            {
-                Console.SetCursorPosition(0, 0);
+            else
                 Console.BackgroundColor = ConsoleColor.DarkRed;
 
-                for (int i = 0; i < Console.WindowHeight; i++) // Prints color as wide and tall as screen
-                {
-                    Console.Write(new string(' ', Console.WindowWidth));
-                }
+            for (int i = 0; i < Console.WindowHeight; i++) // Prints colored whitespaces as wide and tall as screen
+            {
+                Console.Write(new string(' ', Console.WindowWidth));
             }
-
         }
 
         //internal static void NewLine() // "Cleaner" way of adding a new line (outside of CW).
